@@ -100,7 +100,22 @@ export default function Home() {
             </Button>
           </SignedIn>
           <SignedOut>
-            <Button variant="contained" color="primary" sx={{ mt: 2 }} href="/sign-up">
+            <Button 
+              sx={{
+                mt: 2, 
+                border: "1px solid white",
+                bgcolor: "#98ff98",
+                color: "black",
+                fontSize: "large",
+                p: "10px",
+                textShadow: "0px 0px 10px #00FF00",
+                boxShadow: "0px 0px 10px #00FF00",
+                '&:hover': {
+                  color: "#98ff98",
+                  boxShadow: "0px 0px 30px #00FF00",
+                }
+              }} 
+              href="/sign-up">
               Get Started
             </Button>
           </SignedOut>
