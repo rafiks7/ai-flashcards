@@ -55,7 +55,7 @@ export default function Home() {
 
         <AppBar position="static">
           <Toolbar sx={{ bgcolor: "#5A5A5A"}}>
-            <Typography variant="h6" style={{ flexGrow: 1, textShadow: "0px 0px 3px #00FF00"}}>
+            <Typography variant="h6" style={{ flexGrow: 1, fontWeight: "bold"}}>
               Flashcard Factory
             </Typography>
             <SignedOut>
