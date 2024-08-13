@@ -6,7 +6,7 @@ import "./globals.css"
 export default function NavBar() {
   return (
     <AppBar position="static">
-      <Toolbar sx={{ bgcolor: "#5A5A5A"}}>
+      <Toolbar sx={{ bgcolor: "#5A5A5A", boxShadow: "0px 0px 10px #00FF00"}}>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           <a href="http://localhost:3000" >Flashcard Factory</a>
         </Typography>
