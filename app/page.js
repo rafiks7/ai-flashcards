@@ -70,19 +70,19 @@ export default function Home() {
               sx={{
                 mt: 2, 
                 border: "1px solid white",
-                bgcolor: "#98ff98",
+                bgcolor: green_light,
                 fontSize: "large",
                 p: "10px",
-                boxShadow: "0px 0px 10px #00FF00",
+                boxShadow: `0px 0px 10px ${green_main}`,
                 '&:hover': {
-                  bgcolor: "#98ff98",
+                  bgcolor: green_main,
                   transform: "scale(1.1)",
-                  boxShadow: "0px 0px 30px #00FF00",
+                  boxShadow: `0px 0px 30px ${green_main}`,
                 }
               }} 
               href="/generate"
             >
-              <Typography color="black" sx={{ textShadow: "0px 0px 10px #00FF00" }}>Get Started</Typography>
+              <Typography color="black" sx={{ textShadow: `0px 0px 10px ${green_main}` }}>Get Started</Typography>
             </Button>
           </SignedIn>
           <SignedOut>
@@ -91,18 +91,18 @@ export default function Home() {
             sx={{
               mt: 2, 
               border: "1px solid white",
-              bgcolor: "#98ff98",
+              bgcolor: green_light,
               p: "10px",
-              boxShadow: "0px 0px 10px #00FF00",
+              boxShadow: `0px 0px 10px ${green_main}`,
               '&:hover': {
-                bgcolor: "#98ff98",
+                bgcolor: green_light,
                 transform: "scale(1.1)",
-                boxShadow: "0px 0px 30px #00FF00",
+                boxShadow: `0px 0px 30px ${green_main}`,
               }
             }} 
               href="/generate"
             >
-              <Typography color="black" sx={{ textShadow: "0px 0px 10px #00FF00" }}>Get Started</Typography>
+              <Typography color="black" sx={{ textShadow: `0px 0px 10px ${green_main}` }}>Get Started</Typography>
             </Button>
           </SignedOut>
         </Box>
