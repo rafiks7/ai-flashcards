@@ -54,9 +54,9 @@ export default function Home() {
         </Head>
 
         <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6" style={{ flexGrow: 1 }}>
-              Flashcard SaaS
+          <Toolbar sx={{ bgcolor: "#5A5A5A"}}>
+            <Typography variant="h6" style={{ flexGrow: 1, textShadow: "0px 0px 3px #00FF00"}}>
+              Flashcard Factory
             </Typography>
             <SignedOut>
               <Button color="inherit" href="/sign-in">
@@ -72,10 +72,10 @@ export default function Home() {
           </Toolbar>
         </AppBar>
         <Box sx={{ textAlign: "center", my: 4 }}>
-          <Typography variant="h2" gutterBottom sx={{ textShadow: "0px 0px 10px #FF00FF ", color: "#FFFFFF"}}>
+          <Typography variant="h2" gutterBottom sx={{ textShadow: "0px 0px 10px #00FF00 ", color: "#FFFFFF"}}>
             Welcome to Flashcard Factory
           </Typography>
-          <Typography variant="h4" gutterBottom sx={{ mb: 4, textShadow: "0px 0px 10px #FF00FF ", color: "#FFFFFF"}}>
+          <Typography variant="h4" gutterBottom sx={{ mb: 4, textShadow: "0px 0px 10px #00FF00 ", color: "#FFFFFF"}}>
             text → flashcards
           </Typography>
           <SignedIn>
@@ -83,14 +83,15 @@ export default function Home() {
               sx={{
                 mt: 2, 
                 border: "1px solid white",
-                color: "#00FF00",
+                bgcolor: "#98ff98",
+                color: "black",
                 fontSize: "large",
                 p: "10px",
                 textShadow: "0px 0px 10px #00FF00",
                 boxShadow: "0px 0px 10px #00FF00",
-                ':hover': {
-                  transform: "scale(1.1)",
-                  boxShadow: "0px 0px 20px #00FF00"
+                '&:hover': {
+                  color: "#98ff98",
+                  boxShadow: "0px 0px 30px #00FF00",
                 }
               }} 
               href="/generate"
@@ -163,7 +164,7 @@ export default function Home() {
                   border: "1px solid",
                   borderColor: "grey.300",
                   borderRadius: 2,
-                  boxShadow: "0px 0px 10px #FFD700"
+                  boxShadow: "0px 0px 10px #00FF00"
                 }}
               >
                 <Typography variant="h4" gutterBottom color="#FFFFFF">
@@ -180,7 +181,7 @@ export default function Home() {
                   sx={{
                     mt: 2, 
                     border: "1px solid white",
-                    color: "#00FF00",
+                    color: "#98FF98",
                     fontSize: "medium",
                     p: "10px",
                     textShadow: "0px 0px 10px #00FF00",
@@ -203,7 +204,7 @@ export default function Home() {
                   border: "1px solid",
                   borderColor: "grey.300",
                   borderRadius: 2,
-                  boxShadow: "0px 0px 10px #FFD700"
+                  boxShadow: "0px 0px 10px #00FF00"
                 }}
               >
                 <Typography variant="h4" gutterBottom color="#FFFFFF">
@@ -220,7 +221,7 @@ export default function Home() {
                   sx={{
                     mt: 2, 
                     border: "1px solid white",
-                    color: "#00FF00",
+                    color: "#98FF98",
                     fontSize: "medium",
                     p: "10px",
                     textShadow: "0px 0px 10px #00FF00",
