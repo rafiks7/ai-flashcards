@@ -52,25 +52,6 @@ export default function Home() {
             content="AI-generated educational flashcards"
           />
         </Head>
-
-        {/* <AppBar position="static">
-          <Toolbar sx={{ bgcolor: "#5A5A5A"}}>
-            <Typography variant="h6" style={{ flexGrow: 1, fontWeight: "bold"}}>
-              Flashcard Factory
-            </Typography>
-            <SignedOut>
-              <Button color="inherit" href="/sign-in">
-                Log in
-              </Button>
-              <Button color="inherit" href="/sign-up">
-                Sign up
-              </Button>
-            </SignedOut>
-            <SignedIn>
-              <UserButton/>
-            </SignedIn>
-          </Toolbar>
-        </AppBar> */}
         <Box sx={{ textAlign: "center", my:0 }}>
           <Typography variant="h2" gutterBottom sx={{ p:4, textShadow: "0px 0px 10px #00FF00 ", color: "#FFFFFF"}}>
             Welcome to Flashcard Factory
