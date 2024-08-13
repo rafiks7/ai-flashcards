@@ -53,7 +53,7 @@ export default function Home() {
           />
         </Head>
 
-        <AppBar position="static">
+        {/* <AppBar position="static">
           <Toolbar sx={{ bgcolor: "#5A5A5A"}}>
             <Typography variant="h6" style={{ flexGrow: 1, fontWeight: "bold"}}>
               Flashcard Factory
@@ -70,9 +70,9 @@ export default function Home() {
               <UserButton/>
             </SignedIn>
           </Toolbar>
-        </AppBar>
-        <Box sx={{ textAlign: "center", my: 4 }}>
-          <Typography variant="h2" gutterBottom sx={{ textShadow: "0px 0px 10px #00FF00 ", color: "#FFFFFF"}}>
+        </AppBar> */}
+        <Box sx={{ textAlign: "center", my:0 }}>
+          <Typography variant="h2" gutterBottom sx={{ p:4, textShadow: "0px 0px 10px #00FF00 ", color: "#FFFFFF"}}>
             Welcome to Flashcard Factory
           </Typography>
           <Typography variant="h4" gutterBottom sx={{ mb: 4, textShadow: "0px 0px 10px #00FF00 ", color: "#FFFFFF"}}>
