@@ -1,5 +1,6 @@
 import { AppBar, Toolbar, Typography, Button } from "@mui/material"
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { styled } from "@mui/material/styles"
 import Link from "next/link";
 import "./globals.css"
 
