@@ -70,40 +70,39 @@ export default function Home() {
               sx={{
                 mt: 2, 
                 border: "1px solid white",
-                bgcolor: dark_grey,
-                color: "black",
+                bgcolor: "#98ff98",
                 fontSize: "large",
                 p: "10px",
-                textShadow: `0px 0px 10px ${green_main}`,
-                boxShadow: `0px 0px 10px ${green_main}`,
+                boxShadow: "0px 0px 10px #00FF00",
                 '&:hover': {
-                  color: green_light,
-                  boxShadow: `0px 0px 30px ${green_main}`,
+                  bgcolor: "#98ff98",
+                  transform: "scale(1.1)",
+                  boxShadow: "0px 0px 30px #00FF00",
                 }
               }} 
               href="/generate"
             >
-              Get Started
+              <Typography color="black" sx={{ textShadow: "0px 0px 10px #00FF00" }}>Get Started</Typography>
             </Button>
           </SignedIn>
           <SignedOut>
-            <Button 
-              sx={{
-                mt: 2, 
-                border: "1px solid white",
-                bgcolor: green_light,
-                color: "black",
-                fontSize: "large",
-                p: "10px",
-                textShadow: `0px 0px 10px ${green_main}`,
-                boxShadow: `0px 0px 10px ${green_main}`,
-                '&:hover': {
-                  color: green_light,
-                  boxShadow: `0px 0px 30px ${green_main}`,
-                }
-              }} 
-              href="/sign-up">
-              Get Started
+          <Button 
+            id="getStarted"
+            sx={{
+              mt: 2, 
+              border: "1px solid white",
+              bgcolor: "#98ff98",
+              p: "10px",
+              boxShadow: "0px 0px 10px #00FF00",
+              '&:hover': {
+                bgcolor: "#98ff98",
+                transform: "scale(1.1)",
+                boxShadow: "0px 0px 30px #00FF00",
+              }
+            }} 
+              href="/generate"
+            >
+              <Typography color="black" sx={{ textShadow: "0px 0px 10px #00FF00" }}>Get Started</Typography>
             </Button>
           </SignedOut>
         </Box>
