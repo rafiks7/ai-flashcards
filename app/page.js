@@ -94,6 +94,7 @@ export default function Home() {
               bgcolor: green_light,
               p: "10px",
               boxShadow: `0px 0px 10px ${green_main}`,
+              transition: '200ms',
               '&:hover': {
                 bgcolor: green_light,
                 transform: "scale(1.1)",
@@ -187,6 +188,7 @@ export default function Home() {
                     p: "10px",
                     textShadow: "0px 0px 10px white",
                     boxShadow: `0px 0px 10px ${green_main}`,
+                    transition: '200ms',
                     ':hover': {
                       transform: "scale(1.1)",
                       boxShadow: `0px 0px 20px ${green_main}`
@@ -227,6 +229,7 @@ export default function Home() {
                     p: "10px",
                     textShadow: `0px 0px 10px ${green_main}`,
                     boxShadow: `0px 0px 10px ${green_main}`,
+                    transition: '200ms',
                     ':hover': {
                       transform: "scale(1.1)",
                       boxShadow: `0px 0px 20px ${green_main}`
