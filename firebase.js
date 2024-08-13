@@ -9,10 +9,8 @@ import {getFirestore} from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-const firebaseAPIKey = process.env.FIREBASE_API_KEY;
-
 const firebaseConfig = {
-  apiKey: firebaseAPIKey,
+  apiKey: `process.env.FIREBASE_API_KEY`,
   authDomain: "ai-flashcards-5b6c4.firebaseapp.com",
   projectId: "ai-flashcards-5b6c4",
   storageBucket: "ai-flashcards-5b6c4.appspot.com",
