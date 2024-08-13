@@ -43,43 +43,58 @@ export default function Home() {
   };
 
   return (
-    <Container maxWidth="100vw">
-      <Head>
-        <title>Flashcard SaaS</title>
-        <meta
-          name="description"
-          content="AI-generated educational flashcards"
-        />
-      </Head>
+    <Box bgcolor="#121212">
+      <Container maxWidth="100vw">
+        <Head>
+          <title>Flashcard SaaS</title>
+          <meta
+            name="description"
+            content="AI-generated educational flashcards"
+          />
+        </Head>
 
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" style={{ flexGrow: 1 }}>
-            Flashcard SaaS
-          </Typography>
-          <SignedOut>
-            <Button color="inherit" href="/sign-in">
-              Log in
-            </Button>
-            <Button color="inherit" href="/sign-up">
-              Sign up
-            </Button>
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-        </Toolbar>
-      </AppBar>
-      <Box className="background">
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" style={{ flexGrow: 1 }}>
+              Flashcard SaaS
+            </Typography>
+            <SignedOut>
+              <Button color="inherit" href="/sign-in">
+                Log in
+              </Button>
+              <Button color="inherit" href="/sign-up">
+                Sign up
+              </Button>
+            </SignedOut>
+            <SignedIn>
+              <UserButton/>
+            </SignedIn>
+          </Toolbar>
+        </AppBar>
         <Box sx={{ textAlign: "center", my: 4 }}>
-          <Typography variant="h2" gutterBottom>
+          <Typography variant="h2" gutterBottom sx={{ textShadow: "0px 0px 10px #FF00FF ", color: "#FFFFFF"}}>
             Welcome to Flashcard Factory
           </Typography>
-          <Typography variant="h4" sx={{ mb: 4 }} gutterBottom>
+          <Typography variant="h4" gutterBottom sx={{ mb: 4, textShadow: "0px 0px 10px #FF00FF ", color: "#FFFFFF"}}>
             text → flashcards
           </Typography>
           <SignedIn>
-            <Button variant="contained" color="primary" sx={{ mt: 2 }} href="/generate">
+            <Button 
+              sx={{
+                mt: 2, 
+                border: "1px solid white",
+                color: "#00FF00",
+                fontSize: "large",
+                p: "10px",
+                textShadow: "0px 0px 10px #00FF00",
+                boxShadow: "0px 0px 10px #00FF00",
+                ':hover': {
+                  transform: "scale(1.1)",
+                  boxShadow: "0px 0px 20px #00FF00"
+                }
+              }} 
+              href="/generate"
+            >
               Get Started
             </Button>
           </SignedIn>
@@ -93,37 +108,37 @@ export default function Home() {
           <Typography
             variant="h4"
             component="h2"
-            sx={{ mb: 8, fontWeight: "bold" }}
+            sx={{ mb: 8, fontWeight: "bold", textShadow: "0px 0px 10px #00FF00", color: "#FFFFFF"}}
             gutterBottom
           >
             Features
           </Typography>
           <Grid container spacing={4}>
             <Grid item xs={12} md={4}>
-              <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
+              <Typography variant="h5" sx={{ mb: 3, color: "#FFFFFF"}} gutterBottom>
                 Simple Text Input
               </Typography>
-              <Typography>
+              <Typography color="#FFFFFF">
                 {" "}
                 Instantly convert text into interactive flashcards with our AI.
                 Save time and enhance your study sessions effortlessly!
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
-              <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
+              <Typography variant="h5" sx={{ mb: 3, color: "#FFFFFF"}} gutterBottom>
                 Smart Flashcards
               </Typography>
-              <Typography>
+              <Typography color="#FFFFFF">
                 {" "}
                 Our AI generates flashcards that adapt to your learning style. The
                 more you study, the smarter the flashcards become!
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
-              <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
+              <Typography variant="h5" sx={{ mb: 3, color: "#FFFFFF"}} gutterBottom>
                 Accessible Anywhere
               </Typography>
-              <Typography>
+              <Typography color="#FFFFFF">
                 {" "}
                 Study on the go with our mobile-friendly web app. Access your
                 flashcards anytime, anywhere, and on any device!
@@ -135,7 +150,7 @@ export default function Home() {
           <Typography
             variant="h4"
             component="h2"
-            sx={{ mb: 8, fontWeight: "bold" }}
+            sx={{ mb: 8, fontWeight: "bold", textShadow: "0px 0px 10px #00FF00", color: "#FFFFFF" }}
           >
             Pricing
           </Typography>
@@ -143,23 +158,39 @@ export default function Home() {
             <Grid item xs={12} md={6}>
               <Box
                 sx={{
+                  mb: 10,
                   p: 3,
                   border: "1px solid",
                   borderColor: "grey.300",
                   borderRadius: 2,
+                  boxShadow: "0px 0px 10px #FFD700"
                 }}
               >
-                <Typography variant="h4" gutterBottom>
+                <Typography variant="h4" gutterBottom color="#FFFFFF">
                   Basic
                 </Typography>
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="h5" gutterBottom color="#FFFFFF">
                   $5 / month
                 </Typography>
-                <Typography gutterBottom>
+                <Typography gutterBottom color="#FFFFFF">
                   {" "}
                   Access to basic flashcard features and limited storage
                 </Typography>
-                <Button variant="contained" color="primary" sx={{ mt: 2 }}>
+                <Button
+                  sx={{
+                    mt: 2, 
+                    border: "1px solid white",
+                    color: "#00FF00",
+                    fontSize: "medium",
+                    p: "10px",
+                    textShadow: "0px 0px 10px #00FF00",
+                    boxShadow: "0px 0px 10px #00FF00",
+                    ':hover': {
+                      transform: "scale(1.1)",
+                      boxShadow: "0px 0px 20px #00FF00"
+                    }
+                  }} 
+                >
                   Choose Basic
                 </Button>
               </Box>
@@ -167,30 +198,47 @@ export default function Home() {
             <Grid item xs={12} md={6}>
               <Box
                 sx={{
+                  mb: 10,
                   p: 3,
                   border: "1px solid",
                   borderColor: "grey.300",
                   borderRadius: 2,
+                  boxShadow: "0px 0px 10px #FFD700"
                 }}
               >
-                <Typography variant="h4" gutterBottom>
+                <Typography variant="h4" gutterBottom color="#FFFFFF">
                   Pro
                 </Typography>
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="h5" gutterBottom color="#FFFFFF">
                   $10 / month
                 </Typography>
-                <Typography gutterBottom>
+                <Typography gutterBottom color="#FFFFFF">
                   {" "}
                   Unlimited flashcards and storage, with priority support
                 </Typography>
-                <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={handleSubmit}>
+                <Button
+                  sx={{
+                    mt: 2, 
+                    border: "1px solid white",
+                    color: "#00FF00",
+                    fontSize: "medium",
+                    p: "10px",
+                    textShadow: "0px 0px 10px #00FF00",
+                    boxShadow: "0px 0px 10px #00FF00",
+                    ':hover': {
+                      transform: "scale(1.1)",
+                      boxShadow: "0px 0px 20px #00FF00"
+                    }
+                  }} 
+                  onClick={handleSubmit}
+                >
                   Choose Pro
                 </Button>
               </Box>
             </Grid>
           </Grid>
         </Box>
-      </Box>
-    </Container>
+      </Container>
+    </Box>
   );
 }
