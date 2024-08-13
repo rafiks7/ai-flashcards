@@ -51,6 +51,118 @@ export default function Home() {
           content="AI-generated educational flashcards"
         />
       </Head>
+      
+      <Box sx={{ textAlign: "center", my: 4 }}>
+        <Typography variant="h2" gutterBottom>
+          Welcome to Flashcard Factory
+        </Typography>
+        <Typography variant="h4" sx={{ mb: 4 }} gutterBottom>
+          text → flashcards
+        </Typography>
+        <Button variant="contained" color="primary" sx={{ mt: 2 }} href="/sign-up">
+          Get Started
+        </Button>
+      </Box>
+      <Box sx={{ textAlign: "center", my: 10 }}>
+        <Typography
+          variant="h4"
+          component="h2"
+          sx={{ mb: 8, fontWeight: "bold" }}
+          gutterBottom
+        >
+          Features
+        </Typography>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
+              Simple Text Input
+            </Typography>
+            <Typography>
+              {" "}
+              Instantly convert text into interactive flashcards with our AI.
+              Save time and enhance your study sessions effortlessly!
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
+              Smart Flashcards
+            </Typography>
+            <Typography>
+              {" "}
+              Our AI generates flashcards that adapt to your learning style. The
+              more you study, the smarter the flashcards become!
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
+              Accessible Anywhere
+            </Typography>
+            <Typography>
+              {" "}
+              Study on the go with our mobile-friendly web app. Access your
+              flashcards anytime, anywhere, and on any device!
+            </Typography>
+          </Grid>
+        </Grid>
+      </Box>
+      <Box sx={{ textAlign: "center", my: 6 }}>
+        <Typography
+          variant="h4"
+          component="h2"
+          sx={{ mb: 8, fontWeight: "bold" }}
+        >
+          Pricing
+        </Typography>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                p: 3,
+                border: "1px solid",
+                borderColor: "grey.300",
+                borderRadius: 2,
+              }}
+            >
+              <Typography variant="h4" gutterBottom>
+                Basic
+              </Typography>
+              <Typography variant="h5" gutterBottom>
+                $5 / month
+              </Typography>
+              <Typography gutterBottom>
+                {" "}
+                Access to basic flashcard features and limited storage
+              </Typography>
+              <Button variant="contained" color="primary" sx={{ mt: 2 }}>
+                Choose Basic
+              </Button>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                p: 3,
+                border: "1px solid",
+                borderColor: "grey.300",
+                borderRadius: 2,
+              }}
+            >
+              <Typography variant="h4" gutterBottom>
+                Pro
+              </Typography>
+              <Typography variant="h5" gutterBottom>
+                $10 / month
+              </Typography>
+              <Typography gutterBottom>
+                {" "}
+                Unlimited flashcards and storage, with priority support
+              </Typography>
+              <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={handleSubmit}>
+                Choose Pro
+              </Button>
+            </Box>
+          </Grid>
+        </Grid>
 
       <AppBar position="static">
         <Toolbar>
