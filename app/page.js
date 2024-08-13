@@ -49,8 +49,8 @@ export default function Home() {
   };
 
   return (
-    <Box bgcolor="#121212">
-      <Container maxWidth="100vw">
+    <Box bgcolor="#121212" height="100vh">
+      <Container maxWidth="100vw" height="100vh">
         <Head>
           <title>Flashcard SaaS</title>
           <meta
