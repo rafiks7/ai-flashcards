@@ -13,6 +13,7 @@ import {
   Grid,
 } from "@mui/material";
 import Head from "next/head";
+import "./globals.css";
 
 export default function Home() {
   const handleSubmit = async () => {
@@ -76,7 +77,7 @@ export default function Home() {
         <Typography variant="h4" sx={{ mb: 4 }} gutterBottom>
           text → flashcards
         </Typography>
-        <Button variant="contained" color="primary" sx={{ mt: 2 }}>
+        <Button variant="contained" color="primary" sx={{ mt: 2 }} href="/sign-up">
           Get Started
         </Button>
       </Box>
