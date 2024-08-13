@@ -1,6 +1,7 @@
 import { Toolbar, Box, AppBar, Container, Typography, Button } from "@mui/material";
 import Link from "next/link";
 import { SignIn, SignUp } from "@clerk/nextjs";
+import "./signin.css";
 
 export default function SignInPage() {
   return (
@@ -8,7 +9,7 @@ export default function SignInPage() {
       <AppBar position="static" sx={{mb: 4 }}>
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Flashcard SaaS
+            <a href="http://localhost:3000" >Flashcard SaaS</a>
           </Typography>
           <Button color="inherit">
             <Link href="/sign-in" passHref>
