@@ -66,7 +66,7 @@ export default function Home() {
             </Button>
           </SignedIn>
           <SignedOut>
-            <Button variant="contained" color="primary" sx={{ mt: 2 }} href="/sign-up">
+            <Button variant="contained" color="primary" sx={{ mt: 2 }} href="/sign-in">
               Get Started
             </Button>
           </SignedOut>

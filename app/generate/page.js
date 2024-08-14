@@ -21,7 +21,14 @@ import {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { db } from "@/firebase";
-import { doc, getDoc, collection, setDoc, cardDocRef, writeBatch } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  collection,
+  setDoc,
+  cardDocRef,
+  writeBatch,
+} from "firebase/firestore";
 
 export default function Generate() {
   const { isLoaded, isSignedin, user } = useUser();
@@ -114,6 +121,12 @@ export default function Generate() {
             rows={4}
             variant="outlined"
             sx={{ mb: 2 }}
+            placeholder="Enter text to generate flashcards. (Press ctrl + enter to submit)"
+            onKeyDown={(event) => {
+              if (event.key === "Enter" && event.ctrlKey) {
+                handleSubmit();
+              }
+            }} // Listen for Enter key
           />
           <Button
             variant="contained"
@@ -127,14 +140,18 @@ export default function Generate() {
         </Paper>
       </Box>
       {flashcards.length > 0 && (
-        <Box sx={{
+        <Box
+          sx={{
             mt: 4,
             justifyContent: "center", // Center horizontally
             alignItems: "center", // Center vertically
             height: "100%", // Ensure parent has enough height to center vertically
             textAlign: "center", // Center text if needed
-          }} >
-          <Typography variant="h5" sx ={{mb: 4}}>Flashcards Preview</Typography>
+          }}
+        >
+          <Typography variant="h5" sx={{ mb: 4 }}>
+            Flashcards Preview
+          </Typography>
           <Grid container spacing={3}>
             {flashcards.map((flashcard, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
@@ -158,6 +175,7 @@ export default function Generate() {
                             transform: flipped[index]
                               ? "rotateY(180deg)"
                               : "rotateY(0deg)",
+                            
                           },
                           "& > div > div": {
                             position: "absolute",
