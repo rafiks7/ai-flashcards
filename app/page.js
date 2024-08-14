@@ -19,10 +19,10 @@ import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 
 // color variables
-const green_main = "#00ff00"
-const green_dark = "#00be00"
-const green_light = "#ccffbe"
-const grey_dark = "#121212"
+const green_main = "#00ff00";
+const green_dark = "#00be00";
+const green_light = "#ccffbe";
+const grey_dark = "#121212";
 
 export default function Home() {
   const handleSubmit = async () => {
