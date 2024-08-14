@@ -22,7 +22,7 @@ import PsychologyIcon from '@mui/icons-material/Psychology';
 const green_main = "#00ff00"
 const green_dark = "#00be00"
 const green_light = "#ccffbe"
-const dark_grey = "#121212"
+const grey_dark = "#121212"
 
 export default function Home() {
   const handleSubmit = async () => {
@@ -52,7 +52,7 @@ export default function Home() {
   };
 
   return (
-    <Box bgcolor="#121212" minHeight="100vh" display="flex">
+    <Box bgcolor={grey_dark} minHeight="100vh" display="flex">
       <Container maxWidth="100vw">
         <Head>
           <title>Flashcard SaaS</title>
