@@ -2,7 +2,8 @@ import { Box, AppBar, Toolbar, Typography, Button } from "@mui/material"
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { styled } from "@mui/material/styles"
 import Link from "next/link";
-import "./globals.css"
+
+import "../globals.css"
 
 // color variables
 const green_main = "#00ff00";
@@ -46,7 +47,7 @@ export default function NavBar() {
           <Box borderRadius='13px' boxShadow={`0px 0px 10px ${green_main}`}>
             <Button 
               color="inherit" 
-              href="/sign-in" 
+              href="/sign-up" 
               passHref
               sx={{
                 transition: '200ms',
