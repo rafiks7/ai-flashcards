@@ -11,6 +11,25 @@ const green_dark = "#00be00";
 const green_light = "#ccffbe";
 const grey_dark = "#121212";
 
+function NavButton(props) {
+  const {children, href} = props
+  return (
+    <Button
+    color="inherit" 
+    href={href}
+    sx={{
+      transition: '200ms',
+      '&:hover': {
+        borderRadius: '13px',
+        boxShadow: `0px 0px 10px ${green_main}`,
+      }
+    }}
+    >
+      {children}
+    </Button>
+  )
+}
+
 export default function NavBar() {
   return (
     <AppBar position="static">
@@ -29,40 +48,14 @@ export default function NavBar() {
         </Typography>
         <SignedOut>
           <Box mr={3} borderRadius='13px' boxShadow={`0px 0px 10px ${green_main}`}>
-            <Button 
-              color="inherit" 
-              href="/sign-in" 
-              passHref
-              sx={{
-                transition: '200ms',
-                '&:hover': {
-                  borderRadius: '13px',
-                  boxShadow: `0px 0px 10px ${green_main}`,
-                }
-              }}
-            >
-              Log in
-            </Button>
+            <NavButton href='/sign-in'>Sign in</NavButton>
           </Box>
           <Box borderRadius='13px' boxShadow={`0px 0px 10px ${green_main}`}>
-            <Button 
-              color="inherit" 
-              href="/sign-up" 
-              passHref
-              sx={{
-                transition: '200ms',
-                '&:hover': {
-                  borderRadius: '13px',
-                  boxShadow: `0px 0px 10px ${green_main}`,
-                }
-              }}
-            >
-              Sign Up
-            </Button>
+            <NavButton href='/sign-up'>Sign Up</NavButton>
           </Box>
         </SignedOut>
         <SignedIn>
-          <UserButton />
+          <UserButton sx={{}}/>
         </SignedIn>
       </Toolbar>
     </AppBar>
