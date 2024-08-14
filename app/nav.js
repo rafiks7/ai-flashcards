@@ -5,10 +5,10 @@ import Link from "next/link";
 import "./globals.css"
 
 // color variables
-const green_main = "#00ff00"
-const green_dark = "#00be00"
-const green_light = "#ccffbe"
-const grey_dark = "#121212"
+const green_main = "#00ff00";
+const green_dark = "#00be00";
+const green_light = "#ccffbe";
+const grey_dark = "#121212";
 
 export default function NavBar() {
   return (
