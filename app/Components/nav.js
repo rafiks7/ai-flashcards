@@ -14,14 +14,14 @@ const grey_dark = "#121212";
 function NavButton(props) {
   const {children, sx_button, href} = props
   return (
-    <Box sx={sx_button} borderRadius='13px' boxShadow={`0px 0px 10px ${green_main}`}>
+    <Box sx={sx_button} borderRadius="13px" boxShadow={`0px 0px 10px ${green_main}`}>
       <Button
       color="inherit" 
       href={href}
       sx={{
-        transition: '200ms',
+        transition: "200ms",
         '&:hover': {
-          borderRadius: '13px',
+          borderRadius: "13px",
           boxShadow: `0px 0px 10px ${green_main}`,
         }
       }}
@@ -49,10 +49,12 @@ export default function NavBar() {
           <a href="http://localhost:3000">Flashcard Factory</a>
         </Typography>
         <SignedOut>
-          <NavButton href='/sign-in' sx_button={{mr: 2}}>Sign in</NavButton>
-          <NavButton href='/sign-up'>Sign Up</NavButton>
+          <NavButton href="/sign-in" sx_button={{mr: 2}}>Sign in</NavButton>
+          <NavButton href="/sign-up">Sign Up</NavButton>
         </SignedOut>
         <SignedIn>
+          <NavButton href="/flashcards" sx_button={{mr: 2}}>Saved Cards</NavButton>
+          <NavButton href="/flashcards" sx_button={{mr: 2}}>Generate</NavButton>
           <UserButton />
         </SignedIn>
       </Toolbar>
