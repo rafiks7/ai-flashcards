@@ -4,6 +4,7 @@
   margin: 0;
 }
 
-.background {
-  
+a:link, a:hover, a:active, a:visited {
+  color: white;
+  text-decoration: none;
 }
