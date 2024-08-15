@@ -2,7 +2,6 @@
 
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
-import { collection, doc, getDocs, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebase";
 import { useSearchParams } from "next/navigation";
 import {
@@ -24,39 +23,30 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import {
+  doc,
+  getDoc,
+  collection,
+  setDoc,
+  cardDocRef,
+  writeBatch,
+  getDocs,
+  deleteDoc
+} from "firebase/firestore";
 
 export default function Flashcard() {
   const { isLoaded, isSignedIn, user } = useUser();
   const [flashcards, setFlashcards] = useState([]);
+  const [newFlashcards, setNewFlashcards] = useState([]);
   const [flipped, setFlipped] = useState({});
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [selectedFlashcard, setSelectedFlashcard] = useState();
   const [newBackContent, setNewBackContent] = useState(selectedFlashcard?.back);
+  const [userInput, setUserInput] = useState("");
 
   const searchParams = useSearchParams();
   const search = searchParams.get("id");
-
-  useEffect(() => {
-    async function getFlashcard() {
-      if (!search || !user) return;
-      const colRef = collection(doc(collection(db, "users"), user.id), search);
-      const docs = await getDocs(colRef);
-      const flashcards = [];
-
-      docs.forEach((doc) => {
-        flashcards.push({ id: doc.id, ...doc.data() });
-      });
-
-      setFlashcards(flashcards);
-    }
-    getFlashcard();
-  }, [user, search]);
-
-  useEffect( () => {
-    if (selectedFlashcard) {
-      setNewBackContent(selectedFlashcard.back);
-    }
-  }, [selectedFlashcard])
 
   const handleCardClick = (id) => {
     setFlipped((prev) => ({
@@ -64,6 +54,69 @@ export default function Flashcard() {
       [id]: !prev[id],
     }));
   };
+
+  const getFlashcards = async () => {
+    if (!search || !user) return;
+    const colRef = await collection(doc(collection(db, "users"), user.id), search);
+    const docs = await getDocs(colRef);
+    const flashcards = [];
+
+    docs.forEach((doc) => {
+      flashcards.push({ id: doc.id, ...doc.data() });
+    });
+
+    await setFlashcards(flashcards);
+
+  }
+
+  useEffect(() => {
+    getFlashcards();
+  }, [user, search]);
+
+  useEffect(() => {
+    if (selectedFlashcard) {
+      setNewBackContent(selectedFlashcard.back);
+    }
+  }, [selectedFlashcard]);
+
+  const updateFlashcards = async () => {
+    const colRef = collection(doc(collection(db, "users"), user.id), search);
+    const batch = writeBatch(db);
+
+
+    newFlashcards.forEach((flashcard) => {
+      const docRef = doc(colRef); // This targets the specific document within the existing collection
+      batch.set(docRef, flashcard, { merge: true }); // Use merge: true to add to existing documents
+    });
+
+
+    await batch.commit();
+  };
+
+  const handleSubmit = async () => {
+    fetch("/api/generate", {
+      method: "POST",
+      body: userInput,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setNewFlashcards(data);
+      });
+  };
+  
+  // This useEffect will run whenever `newFlashcards` is updated
+  useEffect(() => {
+    if (newFlashcards.length > 0) {
+      
+      // Update flashcards in the database
+      updateFlashcards()
+        .then(() => {
+          // Fetch updated flashcards from the database
+          getFlashcards();
+        });
+    }
+  }, [newFlashcards]);
+  
 
   const handleDelete = async (id) => {
     try {
@@ -75,16 +128,23 @@ export default function Flashcard() {
     }
   };
 
-  const handleOpen = () => {
-    setDialogOpen(true);
+  const handleEditOpen = () => {
+    setEditDialogOpen(true);
   };
 
-  const handleClose = () => {
-    setDialogOpen(false);
+  const handleEditClose = () => {
+    setEditDialogOpen(false);
+  };
+
+  const handleAddOpen = () => {
+    setAddDialogOpen(true);
+  };
+
+  const handleAddClose = () => {
+    setAddDialogOpen(false);
   };
 
   const handleEdit = async (id) => {
-    console.log(newBackContent);
     try {
       const docRef = doc(db, "users", user.id, search, id);
       await updateDoc(docRef, {
@@ -92,7 +152,9 @@ export default function Flashcard() {
       });
       setFlashcards((prev) =>
         prev.map((flashcard) =>
-          flashcard.id === id ? { ...flashcard, back: newBackContent } : flashcard
+          flashcard.id === id
+            ? { ...flashcard, back: newBackContent }
+            : flashcard
         )
       );
     } catch (error) {
@@ -107,6 +169,49 @@ export default function Flashcard() {
   return (
     <Container maxWidth="100vw">
       <Grid container spacing={3} sx={{ mt: 4 }}>
+        <Grid item xs={12} sm={6} md={4}>
+          <Card
+            sx={{
+              height: "100%", // Ensure the Card takes full height of the Grid item
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#e0e0e0",
+              cursor: "pointer",
+              transition: "background-color 0.3s, transform 0.3s",
+              "&:hover": {
+                backgroundColor: "#d5d5d5",
+                transform: "scale(1.05)",
+              },
+              "&:active": {
+                backgroundColor: "#c0c0c0",
+              },
+            }}
+            onClick={handleAddOpen} // Replace with your actual function
+          >
+            <CardContent
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <Typography
+                variant="h2"
+                component="div"
+                sx={{ color: "#007bff" }}
+              >
+                +
+              </Typography>
+              <Typography variant="h6" component="div" sx={{ marginTop: 1 }}>
+                Add Flashcards
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
         {flashcards.map((flashcard) => (
           <Grid item xs={12} sm={6} md={4} key={flashcard.id}>
             <Card sx={{ position: "relative" }}>
@@ -173,7 +278,7 @@ export default function Flashcard() {
                 <IconButton
                   color="primary"
                   onClick={() => {
-                    setDialogOpen(true);
+                    setEditDialogOpen(true);
                     setSelectedFlashcard(flashcard);
                   }}
                 >
@@ -200,7 +305,12 @@ export default function Flashcard() {
           </Grid>
         ))}
       </Grid>
-      <Dialog open={dialogOpen} onClose={handleClose} maxWidth="sm" fullWidth>
+      <Dialog
+        open={editDialogOpen}
+        onClose={handleEditClose}
+        maxWidth="sm"
+        fullWidth
+      >
         <DialogTitle>Edit Flashcard</DialogTitle>
         <DialogContent>
           <TextField
@@ -217,17 +327,54 @@ export default function Flashcard() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleEditClose} color="primary">
             Cancel
           </Button>
           <Button
             onClick={() => {
               handleEdit(selectedFlashcard.id);
-              handleClose();
+              handleEditClose();
             }}
             color="primary"
           >
             Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={addDialogOpen}
+        onClose={handleAddClose}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle>Add Flashcards</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Add"
+            placeholder="Tell our AI what kind of flashcards you want to add!"
+            multiline
+            rows={3}
+            type="text"
+            fullWidth
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            variant="outlined"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleAddClose} color="primary">
+            Cancel
+          </Button>
+          <Button
+            onClick={() => {
+              handleSubmit();
+              handleAddClose();
+            }}
+            color="primary"
+          >
+            Submit
           </Button>
         </DialogActions>
       </Dialog>
