@@ -108,7 +108,7 @@ export default function Generate() {
             alignItems: "center",
           }}
         >
-          <Typography variant="h4" color='white' my={3} sx={{textShadow: `0px 0px 10px ${green_main}`}}>Generate Flashcards</Typography>
+          <Typography variant="h4" color='white' my={3} sx={{textShadow: `0px 0px 10px ${green_main}`}}>Generate Lightcards</Typography>
           <Paper sx={{ p: 4, width: "100%", boxShadow: `0px 0px 25px ${green_main}` }}>
             <TextField
               value={text}
@@ -145,7 +145,7 @@ export default function Generate() {
               height: "100%", // Ensure parent has enough height to center vertically
               textAlign: "center", // Center text if needed
             }} >
-            <Typography variant="h5" color="white" sx={{mb: 4, textShadow: `0px 0px 10px ${green_main}`}}>Flashcards Preview</Typography>
+            <Typography variant="h5" color="white" sx={{mb: 4, textShadow: `0px 0px 10px ${green_main}`}}>Lightcards Preview</Typography>
             <Grid container spacing={3}>
               {flashcards.map((flashcard, index) => (
                 <Grid item xs={12} sm={6} md={4} key={index}>
@@ -221,7 +221,7 @@ export default function Generate() {
           </Box>
         )}
         <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Save Flashcard Set</DialogTitle>
+          <DialogTitle>Save Lightcard Set</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
