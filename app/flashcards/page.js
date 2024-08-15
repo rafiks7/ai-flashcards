@@ -152,14 +152,14 @@ export default function Flashcards() {
                   boxShadow: `0px 0px 25px ${green_main}`,
                   transition: "500ms",
                   "&:hover": {
-                    transform: "translateY(-5px)",
+                    transform: "scale(1.02)",
                     boxShadow: `0px 0px 25px ${green_main}`,
                   },
                 }}
               >
                 <CardActionArea onClick={() => handleCardClick(flashcard.name)}>
                   <CardContent>
-                    <Typography variant="h6">{flashcard.name}</Typography>
+                    <Typography variant="h6" overflow='auto' minHeight='50px'>{flashcard.name}</Typography>
                     <Tooltip
                       title="Delete"
                       arrow
