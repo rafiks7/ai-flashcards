@@ -223,9 +223,6 @@ export default function Generate() {
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Save Flashcard Set</DialogTitle>
           <DialogContent>
-            <DialogContentText>
-              Enter a name for your new flashcard set.
-            </DialogContentText>
             <TextField
               autoFocus
               margin="dense"
