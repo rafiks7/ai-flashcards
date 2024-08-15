@@ -34,6 +34,12 @@ import {
   deleteDoc
 } from "firebase/firestore";
 
+// color variables
+const green_main = "#00ff00";
+const green_dark = "#00be00";
+const green_light = "#ccffbe";
+const grey_dark = "#121212";
+
 export default function Flashcard() {
   const { isLoaded, isSignedIn, user } = useUser();
   const [flashcards, setFlashcards] = useState([]);
@@ -167,217 +173,229 @@ export default function Flashcard() {
   }
 
   return (
-    <Container maxWidth="100vw">
-      <Grid container spacing={3} sx={{ mt: 4 }}>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card
-            sx={{
-              height: "100%", // Ensure the Card takes full height of the Grid item
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#e0e0e0",
-              cursor: "pointer",
-              transition: "background-color 0.3s, transform 0.3s",
-              "&:hover": {
-                backgroundColor: "#d5d5d5",
-                transform: "scale(1.05)",
-              },
-              "&:active": {
-                backgroundColor: "#c0c0c0",
-              },
-            }}
-            onClick={handleAddOpen} // Replace with your actual function
-          >
-            <CardContent
+    <Box display="flex" flexDirection="column" minHeight="100vh" backgroundColor={grey_dark}>
+      <Container maxWidth="100vw">
+        <Grid container spacing={3} sx={{ mt: 4 }}>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card
               sx={{
+                height: "100%", // Ensure the Card takes full height of the Grid item
                 display: "flex",
-                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "100%",
-                height: "100%",
+                backgroundColor: "#e0e0e0",
+                cursor: "pointer",
+                transition: "background-color 0.3s, transform 0.3s",
+                "&:hover": {
+                  backgroundColor: "#d5d5d5",
+                  transform: "scale(1.02)",
+                },
+                "&:active": {
+                  backgroundColor: "#c0c0c0",
+                },
               }}
+              onClick={handleAddOpen} // Replace with your actual function
             >
-              <Typography
-                variant="h2"
-                component="div"
-                sx={{ color: "#007bff" }}
-              >
-                +
-              </Typography>
-              <Typography variant="h6" component="div" sx={{ marginTop: 1 }}>
-                Add Flashcards
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        {flashcards.map((flashcard) => (
-          <Grid item xs={12} sm={6} md={4} key={flashcard.id}>
-            <Card sx={{ position: "relative" }}>
-              <CardActionArea onClick={() => handleCardClick(flashcard.id)}>
-                <CardContent>
-                  <Box
-                    sx={{
-                      perspective: "1000px",
-                      width: "100%",
-                      height: "200px",
-                      position: "relative",
-                      overflow: "hidden",
-                      "& > div": {
-                        transition: "transform 0.6s",
-                        transformStyle: "preserve-3d",
-                        position: "absolute",
-                        width: "100%",
-                        height: "100%",
-                        boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
-                        transform: flipped[flashcard.id]
-                          ? "rotateY(180deg)"
-                          : "rotateY(0deg)",
-                      },
-                      "& > div > div": {
-                        position: "absolute",
-                        width: "100%",
-                        height: "100%",
-                        backfaceVisibility: "hidden",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        padding: 2,
-                        boxSizing: "border-box",
-                      },
-                      "& > div > div:nth-of-type(2)": {
-                        transform: "rotateY(180deg)",
-                      },
-                    }}
-                  >
-                    <div>
-                      <div>
-                        <Typography variant="h5" component="div">
-                          {flashcard.front}
-                        </Typography>
-                      </div>
-                      <div>
-                        <Typography variant="h5" component="div">
-                          {flashcard.back}
-                        </Typography>
-                      </div>
-                    </div>
-                  </Box>
-                </CardContent>
-              </CardActionArea>
-              <Tooltip
-                title="Edit"
-                arrow
+              <CardContent
                 sx={{
-                  position: "absolute",
-                  top: 8,
-                  right: 8,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "100%",
+                  height: "100%",
                 }}
               >
-                <IconButton
-                  color="primary"
-                  onClick={() => {
-                    setEditDialogOpen(true);
-                    setSelectedFlashcard(flashcard);
-                  }}
+                <Typography
+                  variant="h2"
+                  component="div"
+                  sx={{ color: "#007bff" }}
                 >
-                  <EditIcon />
-                </IconButton>
-              </Tooltip>
-              <Tooltip
-                title="Delete"
-                arrow
-                sx={{
-                  position: "absolute",
-                  bottom: 8,
-                  right: 8,
-                }}
-              >
-                <IconButton
-                  color="error"
-                  onClick={() => handleDelete(flashcard.id)}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </Tooltip>
+                  +
+                </Typography>
+                <Typography variant="h6" component="div" sx={{ marginTop: 1 }}>
+                  Add Flashcards
+                </Typography>
+              </CardContent>
             </Card>
           </Grid>
-        ))}
-      </Grid>
-      <Dialog
-        open={editDialogOpen}
-        onClose={handleEditClose}
-        maxWidth="sm"
-        fullWidth
-      >
-        <DialogTitle>Edit Flashcard</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Answer"
-            multiline
-            rows={4}
-            type="text"
-            fullWidth
-            value={newBackContent}
-            onChange={(e) => setNewBackContent(e.target.value)}
-            variant="outlined"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleEditClose} color="primary">
-            Cancel
-          </Button>
-          <Button
-            onClick={() => {
-              handleEdit(selectedFlashcard.id);
-              handleEditClose();
-            }}
-            color="primary"
-          >
-            Save
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <Dialog
-        open={addDialogOpen}
-        onClose={handleAddClose}
-        maxWidth="sm"
-        fullWidth
-      >
-        <DialogTitle>Add Flashcards</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Add"
-            placeholder="Tell our AI what kind of flashcards you want to add!"
-            multiline
-            rows={3}
-            type="text"
-            fullWidth
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            variant="outlined"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleAddClose} color="primary">
-            Cancel
-          </Button>
-          <Button
-            onClick={() => {
-              handleSubmit();
-              handleAddClose();
-            }}
-            color="primary"
-          >
-            Submit
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </Container>
+          {flashcards.map((flashcard) => (
+            <Grid item xs={12} sm={6} md={4} key={flashcard.id}>
+              <Card 
+                sx={{
+                  position: 'relative',
+                  boxShadow: `0px 0px 25px ${green_main}`,
+                  transition: '500ms',
+                  '&:hover': {
+                    transform: "scale(1.02)",
+                    boxShadow: `0px 0px 25px ${green_main}`,
+                  }
+                }}
+              >
+                <CardActionArea onClick={() => handleCardClick(flashcard.id)}>
+                  <CardContent>
+                    <Box
+                      sx={{
+                        perspective: "1000px",
+                        width: "100%",
+                        height: "200px",
+                        position: "relative",
+                        overflow: "hidden",
+                        "& > div": {
+                          transition: "transform 0.6s",
+                          transformStyle: "preserve-3d",
+                          position: "absolute",
+                          width: "100%",
+                          height: "100%",
+                          boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
+                          transform: flipped[flashcard.id]
+                            ? "rotateY(180deg)"
+                            : "rotateY(0deg)",
+                        },
+                        "& > div > div": {
+                          position: "absolute",
+                          width: "100%",
+                          height: "100%",
+                          backfaceVisibility: "hidden",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          padding: 2,
+                          boxSizing: "border-box",
+                        },
+                        "& > div > div:nth-of-type(2)": {
+                          transform: "rotateY(180deg)",
+                        },
+                      }}
+                    >
+                      <div>
+                        <div>
+                          <Typography variant="h5" component="div">
+                            {flashcard.front}
+                          </Typography>
+                        </div>
+                        <div>
+                          <Typography variant="h5" component="div">
+                            {flashcard.back}
+                          </Typography>
+                        </div>
+                      </div>
+                    </Box>
+                  </CardContent>
+                </CardActionArea>
+                <Tooltip
+                  title="Edit"
+                  arrow
+                  sx={{
+                    position: "absolute",
+                    top: 8,
+                    right: 8,
+                  }}
+                >
+                  <IconButton
+                    color="primary"
+                    onClick={() => {
+                      setEditDialogOpen(true);
+                      setSelectedFlashcard(flashcard);
+                    }}
+                  >
+                    <EditIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip
+                  title="Delete"
+                  arrow
+                  sx={{
+                    position: "absolute",
+                    bottom: 8,
+                    right: 8,
+                  }}
+                >
+                  <IconButton
+                    color="error"
+                    onClick={() => handleDelete(flashcard.id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Tooltip>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+        <Dialog
+          open={editDialogOpen}
+          onClose={handleEditClose}
+          maxWidth="sm"
+          fullWidth
+        >
+          <DialogTitle>Edit Flashcard</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Answer"
+              multiline
+              rows={4}
+              type="text"
+              fullWidth
+              value={newBackContent}
+              onChange={(e) => setNewBackContent(e.target.value)}
+              variant="outlined"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleEditClose} color="primary">
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                handleEdit(selectedFlashcard.id);
+                handleEditClose();
+              }}
+              color="primary"
+            >
+              Save
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          open={addDialogOpen}
+          onClose={handleAddClose}
+          maxWidth="sm"
+          fullWidth
+        >
+          <DialogTitle>Add Flashcards</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Add"
+              placeholder="Tell our AI what kind of flashcards you want to add!"
+              multiline
+              rows={3}
+              type="text"
+              fullWidth
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              variant="outlined"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleAddClose} color="primary">
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                handleSubmit();
+                handleAddClose();
+              }}
+              color="primary"
+            >
+              Submit
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </Container>
+    </Box>
   );
 }
