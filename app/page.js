@@ -57,51 +57,51 @@ export default function Home() {
       <Container maxWidth="100vw">
         <Head>
           <title>Flashcard SaaS</title>
-          <meta
-            name="description"
-            content="AI-generated educational flashcards"
-          />
+          <meta name="description" content="AI-generated educational flashcards" />
         </Head>
         <Box
-          height="100vh"
           display="flex" 
           flexDirection="column"
           alignItems="center"
-          sx={{
-            textAlign:"center", 
-            mt:10 
-          }}
+          textAlign="center" 
+          mt={10}
+          mb={15}
         >
           <Typography variant="h3" gutterBottom sx={{ p:0, textShadow: `0px 0px 10px ${green_main}`, color: "white"}}>
             Welcome To
           </Typography>
           <Box 
-            sx = {{
+            sx={{
               position: "relative",
               width: "50vw",
-              height: "20vh",
+              minWidth: "300px",
+              maxWidth: "600px",
+              height: "10vh",
+              minHeight: "120px",
               border: `2px solid ${green_main}`,
               mb: 5
             }}
           >
             <Typography variant="h2" gutterBottom sx={{ p:4, textShadow: `0px 0px 10px ${green_main}`, color: "white"}}>
-              Flashcard Factory
+              Lightcard
             </Typography>
             <Box
-              sx = {{
+              sx={{
                 position: "absolute",
                 top: 5,
                 left: 5,
                 width: "50vw",
-                height: "20vh",
+                minWidth: "300px",
+                maxWidth: "600px",
+                height: "10vh",
+                minHeight: "120px",
                 border: `2px solid ${green_main}`
-
               }}
             >
             </Box>
           </Box>
-          <Typography variant="h4" gutterBottom sx={{ mb: 4, textShadow: `0px 0px 10px ${green_main}`, color: "white"}}>
-            text → flashcards
+          <Typography variant="h4" gutterBottom sx={{ my: 4, textShadow: `0px 0px 10px ${green_main}`, color: "white"}}>
+            AI powered flashcards at your fingertips
           </Typography>
           <SignedIn>
             <Button 
@@ -111,16 +111,16 @@ export default function Home() {
                 bgcolor: green_light,
                 p: "10px",
                 boxShadow: `0px 0px 10px ${green_main}`,
+                transition: '200ms',
                 '&:hover': {
                   bgcolor: green_main,
                   transform: "scale(1.1)",
                   boxShadow: `0px 0px 30px ${green_main}`,
-                  transition: '200ms',
                 }
               }} 
               href="/generate"
             >
-              <Typography color="black" sx={{ fontSize: "large", textShadow: `0px 0px 10px ${green_main}` }}>Get Started</Typography>
+              <Typography color="black" sx={{ fontSize: "large", textShadow: `0px 0px 10px ${green_main}` }}>Light your Path</Typography>
             </Button>
           </SignedIn>
           <SignedOut>
@@ -138,7 +138,7 @@ export default function Home() {
                   boxShadow: `0px 0px 30px ${green_main}`,
                 }
               }} 
-                href="/sign-in"
+              href="/sign-in"
             >
               <Typography color="black" sx={{ fontSize: "large", textShadow: `0px 0px 10px ${green_main}` }}>Get Started</Typography>
             </Button>
@@ -148,12 +148,12 @@ export default function Home() {
           <Typography
             variant="h3"
             component="h2"
+            gutterBottom
             sx={{
               mb: 8,
               textShadow: `0px 0px 10px ${green_main}`,
               color: "white",
             }}
-            gutterBottom
           >
             Features
           </Typography>
@@ -172,12 +172,12 @@ export default function Home() {
             <Grid item xs={12} md={4}>
               <PsychologyIcon sx={{ fontSize: 60, color: "white", mb:2}}/>
               <Typography variant="h5" sx={{ mb: 3, color: "white"}} gutterBottom>
-                Smart Flashcards
+                Dynamic Flashcards
               </Typography>
               <Typography color="white">
                 {" "}
-                Our AI generates flashcards that adapt to your learning style. The
-                more you study, the smarter the flashcards become!
+                Generated flashcards can be saved as a set so that you can get back to studying whenever you have time.
+                Flashcards can be edited after creation to ensure you have complete control over what you study.
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>

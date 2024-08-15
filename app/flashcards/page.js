@@ -135,7 +135,7 @@ export default function Flashcards() {
         my={6}
         sx={{ textShadow: `0px 0px 10px ${green_main}` }}
       >
-        Saved Flashcards
+        Saved Lightsets
       </Typography>
       <Container maxWidth="100vw">
         <Grid

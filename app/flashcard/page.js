@@ -214,7 +214,7 @@ export default function Flashcard() {
                   +
                 </Typography>
                 <Typography variant="h6" component="div" sx={{ marginTop: 1 }}>
-                  Add Flashcards
+                  Add Lightcards
                 </Typography>
               </CardContent>
             </Card>
@@ -328,7 +328,7 @@ export default function Flashcard() {
           maxWidth="sm"
           fullWidth
         >
-          <DialogTitle>Edit Flashcard</DialogTitle>
+          <DialogTitle>Edit Lightcard</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
@@ -364,7 +364,7 @@ export default function Flashcard() {
           maxWidth="sm"
           fullWidth
         >
-          <DialogTitle>Add Flashcards</DialogTitle>
+          <DialogTitle>Add Lightcards</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
