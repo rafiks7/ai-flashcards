@@ -344,7 +344,7 @@ export default function Flashcard() {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleEditClose} color="primary">
+            <Button onClick={handleEditClose} color="success">
               Cancel
             </Button>
             <Button
@@ -352,7 +352,7 @@ export default function Flashcard() {
                 handleEdit(selectedFlashcard.id);
                 handleEditClose();
               }}
-              color="primary"
+              color="success"
             >
               Save
             </Button>
@@ -381,7 +381,7 @@ export default function Flashcard() {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleAddClose} color="primary">
+            <Button onClick={handleAddClose} color="success">
               Cancel
             </Button>
             <Button
@@ -389,7 +389,7 @@ export default function Flashcard() {
                 handleSubmit();
                 handleAddClose();
               }}
-              color="primary"
+              color="success"
             >
               Submit
             </Button>
