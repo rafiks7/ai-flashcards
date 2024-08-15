@@ -54,7 +54,7 @@ export default function NavBar() {
         </SignedOut>
         <SignedIn>
           <NavButton href="/flashcards" sx_button={{mr: 2}}>Saved Cards</NavButton>
-          <NavButton href="/flashcards" sx_button={{mr: 2}}>Generate</NavButton>
+          <NavButton href="/generate" sx_button={{mr: 2}}>Generate</NavButton>
           <UserButton />
         </SignedIn>
       </Toolbar>
