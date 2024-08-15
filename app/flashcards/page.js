@@ -59,7 +59,6 @@ export default function Flashcards() {
     router.push(`/flashcard?id=${id}`);
   };
 
-
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh" backgroundColor={grey_dark}>
       <Typography variant="h4" color='white' textAlign="center" my={6} sx={{textShadow: `0px 0px 10px ${green_main}`}}>Saved Flashcards</Typography>
@@ -79,7 +78,7 @@ export default function Flashcards() {
               >
                 <CardActionArea onClick={() => handleCardClick(flashcard.name)}>
                   <CardContent>
-                    <Typography variant="h6">{flashcard.name}</Typography>
+                    <Typography variant="h6" overflow='auto' minHeight='50px'>{flashcard.name}</Typography>
                   </CardContent>
                 </CardActionArea>
               </Card>
