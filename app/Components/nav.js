@@ -2,8 +2,10 @@ import { Box, AppBar, Toolbar, Typography, Button } from "@mui/material"
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { styled } from "@mui/material/styles"
 import Link from "next/link";
+import Image from "next/image"
 
 import "../globals.css"
+import logo from "../public/logo.jpg"
 
 // color variables
 const green_main = "#00ff00";
@@ -36,18 +38,9 @@ export default function NavBar() {
   return (
     <AppBar position="static">
       <Toolbar sx={{bgcolor: grey_dark, boxShadow: `0px 0px 10px ${green_main}`}}>
-        <Typography 
-          variant="h6" 
-          sx={{
-            flexGrow: 1, 
-            textShadow: `0px 0px 10px ${green_main}`,
-            transition: "200ms",
-            '&:hover': {
-              textShadow: `0px 0px 30px ${green_main}`,
-            }
-          }}>
-          <a href="http://localhost:3000">Flashcard Factory</a>
-        </Typography>
+        <Box display="flex" alignItems="center" flexGrow={1} >
+          <a href="http://localhost:3000"><Image src={logo} alt="Logo" width={50} height={50} /></a>
+        </Box>
         <SignedOut>
           <NavButton href="/sign-in" sx_button={{mr: 2}}>Sign in</NavButton>
           <NavButton href="/sign-up">Sign Up</NavButton>
