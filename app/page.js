@@ -17,6 +17,7 @@ import "./globals.css";
 import LanguageIcon from '@mui/icons-material/Language';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import PsychologyIcon from '@mui/icons-material/Psychology';
+import TypographyGlow from './Components/glowtext.js'
 
 // color variables
 const green_main = "#00ff00";

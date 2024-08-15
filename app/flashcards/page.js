@@ -19,7 +19,14 @@ import {
   Container,
   Grid,
   Typography,
+  Box
 } from "@mui/material";
+
+// color variables
+const green_main = "#00ff00";
+const green_dark = "#00be00";
+const green_light = "#ccffbe";
+const grey_dark = "#121212";
 
 export default function Flashcards() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -54,20 +61,32 @@ export default function Flashcards() {
 
 
   return (
-    <Container maxWidth="100vw">
-      <Grid container spacing={3} sx={{ mt: 4 }}>
-        {flashcards.map((flashcard, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Card>
-              <CardActionArea onClick={() => handleCardClick(flashcard.name)}>
-                <CardContent>
-                  <Typography variant="h6">{flashcard.name}</Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+    <Box display="flex" flexDirection="column" minHeight="100vh" backgroundColor={grey_dark}>
+      <Typography variant="h4" color='white' textAlign="center" my={6} sx={{textShadow: `0px 0px 10px ${green_main}`}}>Saved Flashcards</Typography>
+      <Container maxWidth="100vw">
+        <Grid container display='flex' justifyContent="center" spacing={3} sx={{ mt: 4 }}>
+          {flashcards.map((flashcard, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card 
+                sx={{
+                  boxShadow: `0px 0px 25px ${green_main}`,
+                  transition: '500ms',
+                  '&:hover': {
+                    transform: "translateY(-5px)",
+                    boxShadow: `0px 0px 25px ${green_main}`,
+                  }
+                }}
+              >
+                <CardActionArea onClick={() => handleCardClick(flashcard.name)}>
+                  <CardContent>
+                    <Typography variant="h6">{flashcard.name}</Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
   );
 }
