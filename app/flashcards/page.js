@@ -146,7 +146,7 @@ export default function Flashcards() {
           sx={{ mt: 4 }}
         >
           {flashcards.map((flashcard, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index} sx={{flexShrink: 1}}>
+            <Grid item xs={12} sm={6} md={4} key={index}>
               <Card
                 sx={{
                   boxShadow: `0px 0px 25px ${green_main}`,
