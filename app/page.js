@@ -199,7 +199,7 @@ export default function Home() {
             component="h2"
             sx={{ mb: 8, textShadow: `0px 0px 10px ${green_main}`, color: "white" }}
           >
-            Pricing
+            Support Lightcard
           </Typography>
           <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
@@ -217,13 +217,13 @@ export default function Home() {
                   Basic
                 </Typography>
                 <Typography variant="h5" gutterBottom color="white">
-                  $5 / month
+                  Free!
                 </Typography>
                 <Typography gutterBottom color="white">
                   {" "}
-                  Access to basic flashcard features and limited storage
+                  Access to ALL flashcard features with limited set storage (max 5)
                 </Typography>
-                <Button
+                {/* <Button
                   sx={{
                     mt: 2, 
                     border: "1px solid white",
@@ -241,7 +241,7 @@ export default function Home() {
                   onClick={() => handleSubmit("basic")}
                 >
                   Choose Basic
-                </Button>
+                </Button> */}
               </Box>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -256,14 +256,14 @@ export default function Home() {
                 }}
               >
                 <Typography variant="h4" gutterBottom color="white">
-                  Pro
+                  Supporter
                 </Typography>
                 <Typography variant="h5" gutterBottom color="white">
-                  $10 / month
+                  $1 / month
                 </Typography>
                 <Typography gutterBottom color="white">
                   {" "}
-                  Unlimited flashcards and storage, with priority support
+                  Unlimited storage! Money will go towards keeping Lightcard's light on and the AI running!
                 </Typography>
                 <Button
                   sx={{
@@ -282,7 +282,7 @@ export default function Home() {
                   }} 
                   onClick={() => handleSubmit("pro")}
                 >
-                  Choose Pro
+                  Keep The Light On
                 </Button>
               </Box>
             </Grid>
