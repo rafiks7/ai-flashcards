@@ -31,7 +31,7 @@ import {
   cardDocRef,
   writeBatch,
   getDocs,
-  deleteDoc
+  deleteDoc,
 } from "firebase/firestore";
 
 // color variables
@@ -63,7 +63,10 @@ export default function Flashcard() {
 
   const getFlashcards = async () => {
     if (!search || !user) return;
-    const colRef = await collection(doc(collection(db, "users"), user.id), search);
+    const colRef = await collection(
+      doc(collection(db, "users"), user.id),
+      search
+    );
     const docs = await getDocs(colRef);
     const flashcards = [];
 
@@ -72,8 +75,7 @@ export default function Flashcard() {
     });
 
     await setFlashcards(flashcards);
-
-  }
+  };
 
   useEffect(() => {
     getFlashcards();
@@ -89,12 +91,10 @@ export default function Flashcard() {
     const colRef = collection(doc(collection(db, "users"), user.id), search);
     const batch = writeBatch(db);
 
-
     newFlashcards.forEach((flashcard) => {
       const docRef = doc(colRef); // This targets the specific document within the existing collection
       batch.set(docRef, flashcard, { merge: true }); // Use merge: true to add to existing documents
     });
-
 
     await batch.commit();
   };
@@ -109,20 +109,17 @@ export default function Flashcard() {
         setNewFlashcards(data);
       });
   };
-  
+
   // This useEffect will run whenever `newFlashcards` is updated
   useEffect(() => {
     if (newFlashcards.length > 0) {
-      
       // Update flashcards in the database
-      updateFlashcards()
-        .then(() => {
-          // Fetch updated flashcards from the database
-          getFlashcards();
-        });
+      updateFlashcards().then(() => {
+        // Fetch updated flashcards from the database
+        getFlashcards();
+      });
     }
   }, [newFlashcards]);
-  
 
   const handleDelete = async (id) => {
     try {
@@ -173,7 +170,12 @@ export default function Flashcard() {
   }
 
   return (
-    <Box display="flex" flexDirection="column" minHeight="100vh" backgroundColor={grey_dark}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      minHeight="100vh"
+      backgroundColor={grey_dark}
+    >
       <Container maxWidth="100vw">
         <Grid container spacing={3} sx={{ mt: 4 }}>
           <Grid item xs={12} sm={6} md={4}>
@@ -221,15 +223,17 @@ export default function Flashcard() {
           </Grid>
           {flashcards.map((flashcard) => (
             <Grid item xs={12} sm={6} md={4} key={flashcard.id}>
-              <Card 
+              <Card
                 sx={{
-                  position: 'relative',
+                  position: "relative",
                   boxShadow: `0px 0px 25px ${green_main}`,
-                  transition: '500ms',
-                  '&:hover': {
+                  transition: "500ms",
+                  "&:hover": {
                     transform: "scale(1.02)",
                     boxShadow: `0px 0px 25px ${green_main}`,
-                  }
+                  },
+
+                  
                 }}
               >
                 <CardActionArea onClick={() => handleCardClick(flashcard.id)}>

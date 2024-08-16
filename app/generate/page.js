@@ -17,11 +17,21 @@ import {
   DialogContentText,
   DialogActions,
   Dialog,
+  CircularProgress,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { db } from "@/firebase";
-import { doc, getDoc, collection, setDoc, cardDocRef, writeBatch } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  collection,
+  setDoc,
+  cardDocRef,
+  writeBatch,
+} from "firebase/firestore";
+
+const { PDFDocument } = require("pdf-lib");
 
 // color variables
 const green_main = "#00ff00";
@@ -31,6 +41,7 @@ const grey_dark = "#121212";
 
 export default function Generate() {
   const { isLoaded, isSignedin, user } = useUser();
+  const [loading, setLoading] = useState(false);
   const [flashcards, setFlashcards] = useState([]);
   const [flipped, setFlipped] = useState([]);
   const [text, setText] = useState("");
@@ -38,15 +49,50 @@ export default function Generate() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
+  const handleFileUpload = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const fileContent = e.target.result;
+
+        // If it's a .txt file, you can directly set the text
+        if (file.type === "text/plain") {
+          setText(fileContent);
+        }
+        /*
+        // For .docx and .pdf, use appropriate libraries to extract text
+        else if (file.type === "application/pdf") {
+          const pdfText = await extractTextFromPDF(file);
+          setText(pdfText);
+        } else if (
+          file.type ===
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ) {
+          const docxText = await extractTextFromDocx(fileContent);
+          setText(docxText);
+        }
+        */
+      };
+
+      reader.readAsText(file);
+    }
+  };
+
   const handleSubmit = async () => {
-    fetch("/api/generate", {
-      method: "POST",
-      body: text,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setFlashcards(data);
+    setLoading(true); // Start loading
+    try {
+      const response = await fetch("/api/generate", {
+        method: "POST",
+        body: text,
       });
+      const data = await response.json();
+      setFlashcards(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false); // Stop loading
+    }
   };
 
   const handleCardClick = (id) => {
@@ -99,7 +145,12 @@ export default function Generate() {
   };
 
   return (
-    <Box bgcolor={grey_dark} minHeight="100vh" display="flex" alignItems="center">
+    <Box
+      bgcolor={grey_dark}
+      minHeight="100vh"
+      display="flex"
+      alignItems="center"
+    >
       <Container maxWidth="md">
         <Box
           sx={{
@@ -108,8 +159,21 @@ export default function Generate() {
             alignItems: "center",
           }}
         >
-          <Typography variant="h4" color='white' my={3} sx={{textShadow: `0px 0px 10px ${green_main}`}}>Generate Lightcards</Typography>
-          <Paper sx={{ p: 4, width: "100%", boxShadow: `0px 0px 25px ${green_main}` }}>
+          <Typography
+            variant="h4"
+            color="white"
+            my={3}
+            sx={{ textShadow: `0px 0px 10px ${green_main}` }}
+          >
+            Generate Lightcards
+          </Typography>
+          <Paper
+            sx={{
+              p: 4,
+              width: "100%",
+              boxShadow: `0px 0px 25px ${green_main}`,
+            }}
+          >
             <TextField
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -119,43 +183,75 @@ export default function Generate() {
               rows={4}
               variant="outlined"
               sx={{ mb: 2 }}
-              placeholder="Enter text to generate flashcards. (Press ctrl + enter to submit)"
-            onKeyDown={(event) => {
-              if (event.key === "Enter" && event.ctrlKey) {
-                handleSubmit();
-              }
-            }} // Listen for Enter key
+              placeholder="Paste your notes here or just tell us what you want to learn about. (Press ctrl + enter to submit)"
+              onKeyDown={(event) => {
+                if (event.key === "Enter" && event.ctrlKey) {
+                  handleSubmit();
+                }
+              }}
+            />
+            <input
+              type="file"
+              accept=".txt,.docx,.pdf"
+              onChange={handleFileUpload}
+              style={{ marginTop: "1rem" }}
             />
             <Button
               variant="contained"
-              color={'success'}
+              color={"success"}
               onClick={handleSubmit}
               fullWidth
+              sx={{
+                mt: 2,
+              }}
             >
-              {" "}
               Submit
             </Button>
           </Paper>
         </Box>
+        {loading && (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              mt: 6,
+            }}
+          >
+            <CircularProgress
+              size={45}
+              color="success"
+            />
+          </Box>
+        )}
         {flashcards.length > 0 && (
-          <Box sx={{
+          <Box
+            sx={{
               mt: 4,
               justifyContent: "center", // Center horizontally
               alignItems: "center", // Center vertically
               height: "100%", // Ensure parent has enough height to center vertically
               textAlign: "center", // Center text if needed
-            }} >
-            <Typography variant="h5" color="white" sx={{mb: 4, textShadow: `0px 0px 10px ${green_main}`}}>Lightcards Preview</Typography>
+            }}
+          >
+            <Typography
+              variant="h5"
+              color="white"
+              sx={{ mb: 4, textShadow: `0px 0px 10px ${green_main}` }}
+            >
+              Lightcards Preview
+            </Typography>
             <Grid container spacing={3}>
               {flashcards.map((flashcard, index) => (
                 <Grid item xs={12} sm={6} md={4} key={index}>
-                  <Card sx={{
-                    boxShadow: `0px 0px 25px ${green_main}`,
-                    transition: '500ms',
-                    '&:hover': {
-                      transform: "scale(1.02)",
+                  <Card
+                    sx={{
                       boxShadow: `0px 0px 25px ${green_main}`,
-                    }
+                      transition: "500ms",
+                      "&:hover": {
+                        transform: "scale(1.02)",
+                        boxShadow: `0px 0px 25px ${green_main}`,
+                      },
                     }}
                   >
                     <CardActionArea onClick={() => handleCardClick(index)}>
@@ -213,7 +309,9 @@ export default function Generate() {
                 </Grid>
               ))}
             </Grid>
-            <Box sx={{ mt: 4, mb: 2, display: "flex", justifyContent: "center" }}>
+            <Box
+              sx={{ mt: 4, mb: 2, display: "flex", justifyContent: "center" }}
+            >
               <Button variant="contained" color="success" onClick={handleOpen}>
                 Save
               </Button>
@@ -235,8 +333,12 @@ export default function Generate() {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="success">Cancel</Button>
-            <Button onClick={saveFlashCards} color="success">Save</Button>
+            <Button onClick={handleClose} color="success">
+              Cancel
+            </Button>
+            <Button onClick={saveFlashCards} color="success">
+              Save
+            </Button>
           </DialogActions>
         </Dialog>
       </Container>
