@@ -146,7 +146,7 @@ export default function Flashcards() {
           sx={{ mt: 4 }}
         >
           {flashcards.map((flashcard, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid item xs={12} sm={6} md={4} key={index} sx={{flexShrink: 1}}>
               <Card
                 sx={{
                   boxShadow: `0px 0px 25px ${green_main}`,
@@ -159,7 +159,9 @@ export default function Flashcards() {
               >
                 <CardActionArea onClick={() => handleCardClick(flashcard.name)}>
                   <CardContent>
-                    <Typography variant="h6" overflow='auto' minHeight='50px'>{flashcard.name}</Typography>
+                    <Box display="flex" justifyContent="center" alignItems="center" height="200px" minHeight="50px">
+                      <Typography variant="h6" maxHeight="100%" overflow="auto" sx={{overflowWrap: "break-word"}}>{flashcard.name}</Typography>
+                    </Box>
                     <Tooltip
                       title="Delete"
                       arrow
