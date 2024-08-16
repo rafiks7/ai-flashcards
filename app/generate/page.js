@@ -196,12 +196,12 @@ export default function Generate() {
                         >
                           <div>
                             <div>
-                              <Typography variant="h5" component="div">
+                              <Typography variant="h5" component="div" overflow="auto" sx={{overflowWrap: "break-word"}}>
                                 {flashcard.front}
                               </Typography>
                             </div>
                             <div>
-                              <Typography variant="h5" component="div">
+                              <Typography variant="h5" component="div" overflow="auto" sx={{overflowWrap: "break-word"}}>
                                 {flashcard.back}
                               </Typography>
                             </div>
