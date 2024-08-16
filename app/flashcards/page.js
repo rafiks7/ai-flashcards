@@ -159,7 +159,9 @@ export default function Flashcards() {
               >
                 <CardActionArea onClick={() => handleCardClick(flashcard.name)}>
                   <CardContent>
-                    <Typography variant="h6" overflow='auto' minHeight='50px'>{flashcard.name}</Typography>
+                    <Box display="flex" justifyContent="center" alignItems="center" height="200px" minHeight="50px">
+                      <Typography variant="h6" maxHeight="100%" overflow="auto" sx={{overflowWrap: "break-word"}}>{flashcard.name}</Typography>
+                    </Box>
                     <Tooltip
                       title="Delete"
                       arrow
