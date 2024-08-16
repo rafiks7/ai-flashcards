@@ -194,14 +194,14 @@ export default function Generate() {
                             },
                           }}
                         >
-                          <div>
+                          <div bgcolor={flipped[flashcard.id] ? '#e3e3e3' : '#FFFFFF'}>
                             <div>
                               <Typography variant="h5" component="div">
                                 {flashcard.front}
                               </Typography>
                             </div>
                             <div>
-                              <Typography variant="h5" component="div">
+                              <Typography variant="h5" component="div" fontWeight="bold">
                                 {flashcard.back}
                               </Typography>
                             </div>
