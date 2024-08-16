@@ -266,6 +266,7 @@ export default function Flashcard() {
                           alignItems: "center",
                           padding: 2,
                           boxSizing: "border-box",
+                          bgcolor: flipped[flashcard.id] ? '#e3e3e3' : '#FFFFFF',
                         },
                         "& > div > div:nth-of-type(2)": {
                           transform: "rotateY(180deg)",
@@ -278,8 +279,8 @@ export default function Flashcard() {
                             {flashcard.front}
                           </Typography>
                         </div>
-                        <div>
-                          <Typography variant="h5" component="div" maxHeight="100%" overflow="auto" sx={{overflowWrap: "break-word"}}>
+                        <div bgcolor="black">
+                          <Typography variant="h5" component="div" fontWeight="bold">
                             {flashcard.back}
                           </Typography>
                         </div>
