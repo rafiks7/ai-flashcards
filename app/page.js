@@ -52,6 +52,7 @@ export default function Home() {
     }
   };
 
+
   return (
     <Box bgcolor={grey_dark} minHeight="100vh" display="flex">
       <Container maxWidth="100vw">
@@ -67,7 +68,7 @@ export default function Home() {
           mt={10}
           mb={15}
         >
-          <Typography variant="h3" gutterBottom sx={{ p:0, textShadow: `0px 0px 10px ${green_main}`, color: "white"}}>
+          <Typography variant="h3" gutterBottom sx={{ p:0, textShadow: `0px 0px 10px ${green_main}`, color: "white", animation: "entrance 3s"}}>
             Welcome To
           </Typography>
           <Box 
@@ -81,10 +82,11 @@ export default function Home() {
               border: `2px solid ${green_main}`,
               mb: 5,
               alignItems: "center",
-              justifyContent: "center"
+              justifyContent: "center",
+              animation: "entrance 3s"
             }}
           >
-            <Typography variant="h2" gutterBottom sx={{ p:3, textShadow: `0px 0px 10px ${green_main}`, color: "white"}}>
+            <Typography variant="h2" gutterBottom sx={{ p:3, textShadow: `0px 0px 10px ${green_main}`, color: "white", animation: "entrance 3s"}}>
               Lightcard
             </Typography>
             <Box
@@ -97,12 +99,13 @@ export default function Home() {
                 maxWidth: "600px",
                 height: "10vh",
                 minHeight: "120px",
-                border: `2px solid ${green_main}`
+                border: `2px solid ${green_main}`,
+                animation: "entrance 3s"
               }}
             >
             </Box>
           </Box>
-          <Typography variant="h4" gutterBottom sx={{ my: 4, textShadow: `0px 0px 10px ${green_main}`, color: "white"}}>
+          <Typography variant="h4" gutterBottom sx={{ my: 4, textShadow: `0px 0px 10px ${green_main}`, color: "white", animation: "entrance 3s"}}>
             AI powered flashcards at your fingertips
           </Typography>
           <SignedIn>
@@ -118,7 +121,8 @@ export default function Home() {
                   bgcolor: green_main,
                   transform: "scale(1.1)",
                   boxShadow: `0px 0px 30px ${green_main}`,
-                }
+                },
+                animation: "entrance 3s"
               }} 
               href="/generate"
             >

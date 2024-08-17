@@ -8,3 +8,14 @@ a:link, a:hover, a:active, a:visited {
   color: white;
   text-decoration: none;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes entrance {
+    from {opacity: 0; transform: translateX(-50px);}
+    to {opacity: 1; transform: translateX(0);}
+  }
+}
+
+
+
+
