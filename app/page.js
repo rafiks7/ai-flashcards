@@ -211,6 +211,7 @@ export default function Home() {
             <Grid item xs={12} md={6}>
               <Box
                 sx={{
+                  height: "240px",
                   mb: 10,
                   p: 3,
                   border: "1px solid",
@@ -229,30 +230,12 @@ export default function Home() {
                   {" "}
                   Access to ALL flashcard features with limited set storage (max 5)
                 </Typography>
-                {/* <Button
-                  sx={{
-                    mt: 2, 
-                    border: "1px solid white",
-                    color: green_light,
-                    fontSize: "medium",
-                    p: "10px",
-                    textShadow: "0px 0px 10px white",
-                    boxShadow: `0px 0px 10px ${green_main}`,
-                    transition: '200ms',
-                    ':hover': {
-                      transform: "scale(1.1)",
-                      boxShadow: `0px 0px 20px ${green_main}`
-                    }
-                  }}
-                  onClick={() => handleSubmit("basic")}
-                >
-                  Choose Basic
-                </Button> */}
               </Box>
             </Grid>
             <Grid item xs={12} md={6}>
               <Box
                 sx={{
+                  height: "240px",
                   mb: 10,
                   p: 3,
                   border: "1px solid",
