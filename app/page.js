@@ -269,7 +269,7 @@ export default function Home() {
                       boxShadow: `0px 0px 20px ${green_main}`
                     }
                   }} 
-                  onClick={() => handleSubmit("pro")}
+                  onClick={() => handleSubmit("supporter")}
                 >
                   Keep The Light On
                 </Button>

@@ -27,20 +27,6 @@ export async function POST(req) {
 
   const { plan } = await req.json();
 
-  let price;
-  switch (plan) {
-    case "basic":
-      price = formatAmountForStripe(5);
-      break;
-    case "pro":
-      price = formatAmountForStripe(10);
-      break;
-    default:
-      return NextResponse.json({ error: "Invalid plan" }, { status: 400 });
-  }
-
-
-
   const params = {
     mode: "subscription",
     payment_method_types: ["card"],
@@ -49,9 +35,9 @@ export async function POST(req) {
         price_data: {
           currency: "usd",
           product_data: {
-            name: plan === "basic" ? "Basic Subscription" : "Pro Subscription",
+            name: "Supporter Subscription",
           },
-          unit_amount: price,
+          unit_amount: formatAmountForStripe(1),
           recurring: { interval: "month", interval_count: 1 },
         },
         quantity: 1,
