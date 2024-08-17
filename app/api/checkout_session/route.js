@@ -39,8 +39,6 @@ export async function POST(req) {
       return NextResponse.json({ error: "Invalid plan" }, { status: 400 });
   }
 
-
-
   const params = {
     mode: "subscription",
     payment_method_types: ["card"],

@@ -28,7 +28,7 @@ export default function Home() {
   const handleSubmit = async (plan) => {
     const checkoutSession = await fetch("/api/checkout_session", {
       method: "POST",
-      body: JSON.stringify({ plan }), // Send mode as JSON
+      body: JSON.stringify({ plan }),
       headers: {
         origin: "http://localhost:3000",
       },

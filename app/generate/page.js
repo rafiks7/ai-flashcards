@@ -31,7 +31,6 @@ import {
   writeBatch,
 } from "firebase/firestore";
 
-const { PDFDocument } = require("pdf-lib");
 
 // color variables
 const green_main = "#00ff00";
