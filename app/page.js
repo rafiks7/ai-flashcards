@@ -79,10 +79,12 @@ export default function Home() {
               height: "10vh",
               minHeight: "120px",
               border: `2px solid ${green_main}`,
-              mb: 5
+              mb: 5,
+              alignItems: "center",
+              justifyContent: "center"
             }}
           >
-            <Typography variant="h2" gutterBottom sx={{ p:4, textShadow: `0px 0px 10px ${green_main}`, color: "white"}}>
+            <Typography variant="h2" gutterBottom sx={{ p:3, textShadow: `0px 0px 10px ${green_main}`, color: "white"}}>
               Lightcard
             </Typography>
             <Box
