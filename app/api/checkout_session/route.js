@@ -29,11 +29,8 @@ export async function POST(req) {
 
   let price;
   switch (plan) {
-    case "basic":
-      price = formatAmountForStripe(5);
-      break;
     case "pro":
-      price = formatAmountForStripe(10);
+      price = formatAmountForStripe(1);
       break;
     default:
       return NextResponse.json({ error: "Invalid plan" }, { status: 400 });
