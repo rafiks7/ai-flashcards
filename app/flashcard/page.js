@@ -48,6 +48,7 @@ export default function Flashcard() {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [selectedFlashcard, setSelectedFlashcard] = useState();
+  const [newFrontContent, setNewFrontContent] = useState(selectedFlashcard?.front);
   const [newBackContent, setNewBackContent] = useState(selectedFlashcard?.back);
   const [userInput, setUserInput] = useState("");
 
@@ -83,6 +84,7 @@ export default function Flashcard() {
 
   useEffect(() => {
     if (selectedFlashcard) {
+      setNewFrontContent(selectedFlashcard.front);
       setNewBackContent(selectedFlashcard.back);
     }
   }, [selectedFlashcard]);
@@ -148,12 +150,13 @@ export default function Flashcard() {
     try {
       const docRef = doc(db, "users", user.id, search, id);
       await updateDoc(docRef, {
+        front: newFrontContent,
         back: newBackContent,
       });
       setFlashcards((prev) =>
         prev.map((flashcard) =>
           flashcard.id === id
-            ? { ...flashcard, back: newBackContent }
+            ? { ...flashcard, front: newFrontContent, back: newBackContent }
             : flashcard
         )
       );
@@ -334,6 +337,17 @@ export default function Flashcard() {
           <DialogContent>
             <TextField
               autoFocus
+              margin="dense"
+              label="Question"
+              multiline
+              rows={4}
+              type="text"
+              fullWidth
+              value={newFrontContent}
+              onChange={(e) => setNewFrontContent(e.target.value)}
+              variant="outlined"
+            />
+            <TextField
               margin="dense"
               label="Answer"
               multiline
