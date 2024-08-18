@@ -248,7 +248,7 @@ export default function Home() {
                   Supporter
                 </Typography>
                 <Typography variant="h5" gutterBottom color="white">
-                  $1 / month
+                  $1 one-time purchase
                 </Typography>
                 <Typography gutterBottom color="white">
                   {" "}
