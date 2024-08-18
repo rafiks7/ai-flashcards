@@ -39,7 +39,7 @@ export default function NavBar() {
     <AppBar position="static">
       <Toolbar sx={{bgcolor: grey_dark, boxShadow: `0px 0px 10px ${green_main}`}}>
         <Box display="flex" alignItems="center" flexGrow={1} >
-          <a href="http://localhost:3000"><Image src={logo} alt="Logo" width={50} height={50} /></a>
+          <a href="https://ai-flashcards-pi.vercel.app/"><Image src={logo} alt="Logo" width={50} height={50} /></a>
         </Box>
         <SignedOut>
           <NavButton href="/sign-in" sx_button={{mr: 2}}>Sign in</NavButton>

@@ -79,7 +79,7 @@ export default function Generate() {
   };
 
   const handleSubmit = async () => {
-    setLoading(true); // Start loading
+    setLoading(true); 
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -90,7 +90,7 @@ export default function Generate() {
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false); 
     }
   };
 
@@ -227,10 +227,10 @@ export default function Generate() {
           <Box
             sx={{
               mt: 4,
-              justifyContent: "center", // Center horizontally
-              alignItems: "center", // Center vertically
-              height: "100%", // Ensure parent has enough height to center vertically
-              textAlign: "center", // Center text if needed
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%", 
+              textAlign: "center", 
             }}
           >
             <Typography
@@ -261,7 +261,7 @@ export default function Generate() {
                             width: "100%",
                             height: "200px",
                             position: "relative",
-                            overflow: "hidden", // To prevent overflow of flipped content
+                            overflow: "hidden",
                             "& > div": {
                               transition: "transform 0.6s",
                               transformStyle: "preserve-3d",

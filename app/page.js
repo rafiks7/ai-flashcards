@@ -30,7 +30,7 @@ export default function Home() {
       method: "POST",
       body: JSON.stringify({ plan }),
       headers: {
-        origin: "http://localhost:3000",
+        origin: "https://ai-flashcards-pi.vercel.app/",
       },
     });
 
@@ -228,7 +228,7 @@ export default function Home() {
                 </Typography>
                 <Typography gutterBottom color="white">
                   {" "}
-                  Access to ALL flashcard features with limited set storage (max 5)
+                  Access to ALL our Lightcard features for free!
                 </Typography>
               </Box>
             </Grid>
@@ -252,7 +252,7 @@ export default function Home() {
                 </Typography>
                 <Typography gutterBottom color="white">
                   {" "}
-                  Unlimited storage! Money will go towards keeping Lightcard's light on and the AI running!
+                  Help us keep Lightcard shining and the AI running!
                 </Typography>
                 <Button
                   sx={{
