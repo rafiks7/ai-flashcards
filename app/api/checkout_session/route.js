@@ -37,17 +37,16 @@ export async function POST(req) {
   }
 
   const params = {
-    mode: "subscription",
+    mode: "payment",
     payment_method_types: ["card"],
     line_items: [
       {
         price_data: {
           currency: "usd",
           product_data: {
-            name: plan === "basic" ? "Basic Subscription" : "Pro Subscription",
+            name: plan === "basic" ? "Basic Subscription" : "Supporter",
           },
           unit_amount: price,
-          recurring: { interval: "month", interval_count: 1 },
         },
         quantity: 1,
       },

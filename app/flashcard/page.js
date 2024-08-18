@@ -34,7 +34,6 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-// color variables
 const green_main = "#00ff00";
 const green_dark = "#00be00";
 const green_light = "#ccffbe";
@@ -92,8 +91,8 @@ export default function Flashcard() {
     const batch = writeBatch(db);
 
     newFlashcards.forEach((flashcard) => {
-      const docRef = doc(colRef); // This targets the specific document within the existing collection
-      batch.set(docRef, flashcard, { merge: true }); // Use merge: true to add to existing documents
+      const docRef = doc(colRef); 
+      batch.set(docRef, flashcard, { merge: true }); 
     });
 
     await batch.commit();
@@ -110,12 +109,9 @@ export default function Flashcard() {
       });
   };
 
-  // This useEffect will run whenever `newFlashcards` is updated
   useEffect(() => {
     if (newFlashcards.length > 0) {
-      // Update flashcards in the database
       updateFlashcards().then(() => {
-        // Fetch updated flashcards from the database
         getFlashcards();
       });
     }
@@ -181,7 +177,7 @@ export default function Flashcard() {
           <Grid item xs={12} sm={6} md={4}>
             <Card
               sx={{
-                height: "100%", // Ensure the Card takes full height of the Grid item
+                height: "100%", 
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -196,7 +192,7 @@ export default function Flashcard() {
                   backgroundColor: "#c0c0c0",
                 },
               }}
-              onClick={handleAddOpen} // Replace with your actual function
+              onClick={handleAddOpen} 
             >
               <CardContent
                 sx={{

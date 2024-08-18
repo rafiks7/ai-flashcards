@@ -53,16 +53,14 @@ export default function Flashcards() {
   }
 
   async function deleteQueryBatch(db, query, resolve) {
-  const snapshot = await getDocs(query); // Use getDocs to execute the query
+  const snapshot = await getDocs(query); 
 
   if (snapshot.size === 0) {
-      // When there are no documents left, we are done
       resolve();
       return;
     }
       
   
-    // Delete documents in a batch
     const batch = writeBatch(db);
     console.log(snapshot.docs);
     snapshot.docs.forEach((doc) => {
@@ -71,8 +69,6 @@ export default function Flashcards() {
     });
     await batch.commit();
   
-    // Recurse on the next process tick, to avoid
-    // exploding the stack.
     process.nextTick(() => {
       deleteQueryBatch(db, query, resolve);
     });
@@ -174,7 +170,7 @@ export default function Flashcards() {
                       <IconButton
                         color="error"
                         onClick={(e) => {
-                          e.stopPropagation(); // Prevents the card click event
+                          e.stopPropagation(); 
                           handleDelete(flashcard.name);
                         }}
                       >
