@@ -32,6 +32,7 @@ import {
   writeBatch,
   getDocs,
   deleteDoc,
+  updateDoc
 } from "firebase/firestore";
 
 const green_main = "#00ff00";
