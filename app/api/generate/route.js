@@ -165,6 +165,8 @@ Generate flashcards that are accurate, relevant, and educationally valuable. Ens
 
 Remember: the input could be user-generated text or notes, so adapt your approach accordingly.
 
+Note: Please do not indicate the type of question on the front of the flashcard.
+
 Return in the folllowing JSON format
 {
     "flashcards":[
