@@ -1,4 +1,4 @@
-![Lightcard Logo](app/public/logo.jpg)
+<img src="./app/public/logo.jpg" alt="Roomventory Logo" width="200" />
 
 # Illuminate your Learning with [Lightcard](https://ai-flashcards-pi.vercel.app/)
 
